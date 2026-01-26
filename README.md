@@ -1,2 +1,7 @@
 # agent-skills
-My Agent Skills
+
+## How to use
+
+```shell
+npx skills add hrdtbs/agent-skills
+```
