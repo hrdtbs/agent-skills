@@ -30,7 +30,18 @@ If there are uncommitted changes, ask the user whether to:
 git branch --show-current
 ```
 
-Ensure you're not on `main` or `master`. If so, ask the user to create or switch to a feature branch.
+If you're on `main` or `master`, create a feature branch automatically:
+
+1. **Decide the branch name** using, in order of preference:
+   - **Issue number + slug**: If an issue number is available from conversation context, use `fix/<issue>-<short-slug>` or `feat/<issue>-<short-slug>` (e.g. `fix/42-auth-timeout`, `feat/123-add-login`).
+   - **Change content**: If no issue number, infer type and slug from changed files: `git status`, `git diff --stat`, or `git diff` to derive a short kebab-case slug (e.g. `fix/memory-leak-handler`, `docs/update-readme`).
+2. **Create and switch to the branch**:
+   ```bash
+   git checkout -b <branch-name>
+   ```
+   Use a type prefix (`fix/`, `feat/`, `docs/`, `refactor/`, `chore/`) that matches the change. Keep the slug short and lowercase with hyphens.
+
+If already on a feature branch, proceed to the next step.
 
 ### 2. Find the base branch
 
