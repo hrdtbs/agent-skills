@@ -1,5 +1,5 @@
 ---
-name: conventional-commit
+name: commit
 description: Enforces Conventional Commits format when creating git commits. Use this skill whenever you need to create a commit message. Triggers on "commit", "git commit", "コミット", "変更をコミット".
 ---
 
