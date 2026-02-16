@@ -11,18 +11,19 @@ For detailed usage and commands, refer to the [official GitHub CLI manual](https
 
 ## Usage
 
-Run the `gh.sh` script with any `gh` command arguments:
+Run `gh` command with arguments:
 
 ```bash
-bash /mnt/skills/user/github-cli/scripts/gh.sh [subcommand] [flags]
+gh [subcommand] [flags]
 ```
 
 **Example:**
 
 ```bash
-bash /mnt/skills/user/github-cli/scripts/gh.sh issue list --state open
+gh issue list --state open
 ```
 
 ## Troubleshooting
 
+- gh auth loginで認証を行うべきです。認証されていない場合は、gh auth loginを実行させてください
 - Ensure authentication is set up (usually via `GITHUB_TOKEN` environment variable).
