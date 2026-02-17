@@ -26,3 +26,4 @@ gh issue list --state open
 ## Troubleshooting
 
 - If you are not authenticated, run `gh auth login`.
+- Ensure authentication is set up (usually via `GITHUB_TOKEN` environment variable).
