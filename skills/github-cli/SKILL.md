@@ -25,5 +25,4 @@ gh issue list --state open
 
 ## Troubleshooting
 
-- gh auth loginで認証を行うべきです。認証されていない場合は、gh auth loginを実行させてください
-- Ensure authentication is set up (usually via `GITHUB_TOKEN` environment variable).
+- If you are not authenticated, run `gh auth login`.
