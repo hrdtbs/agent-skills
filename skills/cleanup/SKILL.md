@@ -3,11 +3,7 @@ name: cleanup
 description: Investigate and remove unused code, files, and dependencies to keep the codebase clean and maintainable. Use this when you want to "remove unused code", "clean up dependencies", "find dead code", or "optimize project size".
 ---
 
-* **Investigation:** Identify unused dependencies or code using automated tools for the relevant language (e.g. `depcheck`/`knip` for Node.js, `vulture` for Python, `go mod tidy` for Go) or manual `grep`.
-* **Verification (CRITICAL):** Before removing anything, manually check for dynamic usage (strings, reflection, dynamic imports), framework/configuration usage (e.g., Tailwind config, ESLint plugins), and public API requirements.
-* **Avoid False Positives:** Automated tools miss dynamic references. Always double-check with `grep`.
-* **Removal:** Remove items minimally and incrementally.
-* **Testing:** Run the test suite and a full build after removal to ensure no functional regressions or compilation errors.
+* **Verification (CRITICAL):** Before removing anything, manually check for dynamic usage (strings, reflection, dynamic imports), framework/configuration usage (e.g., Tailwind config, ESLint plugins), and public API requirements. Always double-check automated tool findings with `grep` to avoid false positives.
 
 ## Output Format
 
