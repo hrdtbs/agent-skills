@@ -1,0 +1,1 @@
+Ensure the domain layer is completely free of framework-specific dependencies.
