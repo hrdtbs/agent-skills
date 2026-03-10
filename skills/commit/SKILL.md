@@ -6,6 +6,7 @@ description: Enforces Conventional Commits format when creating git commits. Mak
 * Format: Use Conventional Commits (`<type>[optional scope][optional !]: <description>`).
 * Breaking Changes: Add `!` before the colon or `BREAKING CHANGE:` in the footer.
 * No Emojis: Please avoid using emojis in commit messages. This ensures compatibility across various terminal environments and maintains a uniform, professional git history that is easy to read.
+* Co-authors: Append `Co-authored-by:` for the AI Agent and the user at the end of the commit message.
 * Validation: Run `bash /mnt/skills/user/commit/scripts/validate-commit.sh "message"` before committing to verify the format.
 
 ## Commit message format
