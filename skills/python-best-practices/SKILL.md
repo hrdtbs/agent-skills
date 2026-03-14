@@ -1,6 +1,6 @@
 ---
 name: python-best-practices
-description: Pythonic code with modern type hints, dataclasses, async patterns, packaging, and testing
+description: Pythonic code with modern type hints, dataclasses, async patterns, packaging, and testing. Make sure to use this skill whenever the user asks you to write, review, or refactor Python code, or mentions Pythonic practices, type hints, async, or testing.
 ---
 
 # Python Best Practices
@@ -33,7 +33,7 @@ class UserResponse(TypedDict):
     active: bool
 ```
 
-Always type function signatures. Use `mypy --strict` or `pyright` in CI. Use `type: ignore` comments sparingly with justification.
+Type function signatures to improve code clarity and catch errors early. Use tools like `mypy --strict` or `pyright` in CI to enforce typing. When you must use `type: ignore`, add a brief comment explaining why it's necessary to help other developers understand the context.
 
 ## Dataclasses vs Pydantic
 
@@ -56,7 +56,7 @@ class Config:
     tags: list[str] = field(default_factory=list)
 ```
 
-Use `frozen=True` for immutable value objects. Use `slots=True` for memory efficiency.
+When defining dataclasses, use `frozen=True` to create immutable value objects, preventing accidental modifications. Use `slots=True` to reduce memory usage and speed up attribute access.
 
 ### Pydantic (external input, validation required)
 ```python
@@ -77,7 +77,7 @@ class CreateUserRequest(BaseModel):
         return v.lower()
 ```
 
-Rule: Use dataclasses for domain models and internal structs. Use Pydantic for API boundaries, config files, and external data parsing.
+As a general guideline, use dataclasses for domain models and internal structs since they are built into the standard library and lightweight. Use Pydantic for API boundaries, config files, and external data parsing because its built-in validation ensures external data is correct before your application processes it.
 
 ## Async Patterns
 
@@ -103,11 +103,11 @@ async def process_with_semaphore(items: list[str], max_concurrent: int = 10):
     return await asyncio.gather(*[bounded_process(i) for i in items])
 ```
 
-Rules:
-- Use `httpx` instead of `requests` for async HTTP
-- Use `asyncio.gather` for concurrent tasks, `asyncio.Semaphore` for rate limiting
-- Never call blocking I/O in async functions (use `asyncio.to_thread` for legacy code)
-- Use `async with` for resource management (connections, sessions)
+Guidelines for Async Code:
+- Use `httpx` instead of `requests` for async HTTP requests to avoid blocking the event loop.
+- Use `asyncio.gather` for concurrent tasks, and `asyncio.Semaphore` for rate limiting when making many external calls.
+- Avoid calling blocking I/O in async functions as it blocks the event loop and defeats the purpose of async. Instead, use `asyncio.to_thread` to wrap legacy synchronous code.
+- Always use `async with` for resource management (connections, sessions) to ensure proper cleanup even if exceptions occur.
 
 ## Project Structure
 
@@ -132,7 +132,7 @@ my-project/
   pyproject.toml
 ```
 
-Use `src` layout to prevent accidental imports from the project root.
+Use a `src` layout for your project structure. This prevents accidental imports from the project root and ensures that your testing environment matches how the package will be installed for users.
 
 ## pyproject.toml
 
@@ -177,7 +177,7 @@ asyncio_mode = "auto"
 testpaths = ["tests"]
 ```
 
-Use `pyproject.toml` for all tool configuration. Use Ruff instead of flake8 + isort + black (single tool, 10-100x faster).
+Use `pyproject.toml` as the single source of truth for all tool configuration. This keeps the project root clean. Prefer using Ruff over a combination of flake8, isort, and black; it consolidates your toolchain into a single, much faster tool.
 
 ## Virtual Environments
 
@@ -192,7 +192,7 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-Always use virtual environments. Never install packages globally. Pin exact versions in a lockfile (`uv.lock` or `requirements.txt` generated from `pip freeze`).
+Use virtual environments to isolate dependencies and prevent system-wide package conflicts. Avoid installing packages globally. To ensure reproducible builds across different environments, pin exact versions in a lockfile (e.g., `uv.lock` or a `requirements.txt` generated from `pip freeze`).
 
 ## Testing with pytest
 
@@ -226,7 +226,7 @@ async def test_fetch_user_parses_response(mock_http_client):
     mock_http_client.get.assert_called_once_with("/users/1")
 ```
 
-Use `conftest.py` for shared fixtures. Use `pytest.mark.parametrize` for test variations. Use `tmp_path` fixture for file system tests.
+Organize shared test fixtures in `conftest.py` so they are available across multiple test files. Use `pytest.mark.parametrize` to easily run the same test logic with different inputs, reducing code duplication. When writing tests that involve file system operations, use the built-in `tmp_path` fixture to ensure tests are isolated and clean up after themselves.
 
 ## Pythonic Idioms
 
@@ -279,4 +279,4 @@ except DatabaseError as e:
     return {"error": "Internal error"}, 500
 ```
 
-Never use bare `except:`. Catch the most specific exception. Use `logger.exception()` to include tracebacks. Define custom exception hierarchies for your application.
+Avoid bare `except:` clauses so you don't inadvertently catch system-exiting exceptions like `KeyboardInterrupt` or mask unexpected bugs. Catch the most specific exception possible. When logging errors, use `logger.exception()` to automatically include the traceback in the log, making debugging easier. Define custom exception hierarchies for your application so callers can handle different error cases gracefully.
