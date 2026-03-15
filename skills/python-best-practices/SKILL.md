@@ -257,6 +257,13 @@ match command:
         raise ValueError(f"Unknown command: {command}")
 ```
 
+Prefer Pythonic idioms over traditional C-style loop equivalents because they clearly communicate intent, reduce cognitive load, and minimize boilerplate.
+- **Unpacking** makes assignments more declarative and safe by failing fast if shapes don't match.
+- **Comprehensions** are often faster than `map`/`filter` or manual `for`-loops because they are optimized in C, and they cleanly express transformations.
+- **Context managers** (`with` statements) guarantee that resources like files or locks are released cleanly, preventing resource leaks even when exceptions occur.
+- **The walrus operator** (`:=`) prevents redundant function calls or variable evaluations when you need to test a condition and use the value immediately.
+- **Structural pattern matching** makes code handling complex nested data structures robust and highly readable, avoiding deep `if-elif` chains.
+
 ## Error Handling
 
 ```python
