@@ -1,0 +1,3 @@
+[submodule "skills/comfyui-operator-skill"]
+	path = skills/comfyui-operator-skill
+	url = https://github.com/hrdtbs/comfyui-operator-skill
