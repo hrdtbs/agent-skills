@@ -1,6 +1,6 @@
 ---
 name: prompt-evaluator
-description: Evaluate and score user-written LLM prompts on a 100-point scale across 5 axes (Clarity, Structure, Information Content, Specificity, Context), providing specific improvement suggestions and a revised prompt. Use when the user asks to evaluate, review, score, or improve a prompt, or when they say things like "このプロンプトどう？", "プロンプトを評価して", "rate my prompt", "review this prompt", or "is this prompt good enough?". This skill focuses on scoring existing prompts, not writing new ones from scratch.
+description: "Evaluate and score user-written LLM prompts on a 100-point scale across 5 axes (Clarity, Structure, Information Content, Specificity, Context), providing specific improvement suggestions and a revised prompt. Make sure to use this skill whenever the user asks to evaluate, review, score, or improve a prompt, or when they say things like 'このプロンプトどう？', 'プロンプトを評価して', 'rate my prompt', 'review this prompt', or 'is this prompt good enough?'. This skill focuses on scoring existing prompts, not writing new ones from scratch."
 ---
 
 # Prompt Evaluator
@@ -35,7 +35,7 @@ Evaluate LLM prompts on a 100-point scale based on research findings from Thorge
 
 ## Output Template
 
-ALWAYS use this format:
+Use this exact template because a consistent format helps the user easily compare evaluations and understand the scoring breakdown:
 
 ```
 ## プロンプト評価結果 / Prompt Evaluation
