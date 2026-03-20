@@ -28,10 +28,10 @@ When applying TypeScript best practices, you MUST follow this sequence:
 
 ## Core Directives
 
-- **Absolute Type Safety**: Never use `any`. Use `unknown` if the type is truly not known ahead of time, and properly narrow it down using type guards or runtime validation (e.g., Zod).
-- **Avoid Type Assertions**: Avoid `as Type` whenever possible. Rely on type inference, type guards, and the `satisfies` operator instead of asserting types, which can hide errors.
+- **Absolute Type Safety**: Never use `any`. Using `any` completely disables TypeScript's type checking for that value, defeating the purpose of using TypeScript and allowing runtime errors to slip through. Use `unknown` if the type is truly not known ahead of time, and properly narrow it down using type guards or runtime validation (e.g., Zod).
+- **Avoid Type Assertions**: Avoid `as Type` whenever possible. Type assertions tell the compiler to trust you even if it thinks you're wrong, which can hide underlying errors if the data shape changes later. Rely on type inference, type guards, and the `satisfies` operator instead.
 - **Enums vs. Literal Unions**: Prefer string literal unions (`type Status = "idle" | "loading" | "error"`) over `enum`. They are simpler, result in cleaner output, and integrate perfectly with standard JS.
-- **Exhaustive Matching**: Always use exhaustive checks (e.g., `never` return types) when dealing with discriminated unions to ensure all cases are handled.
+- **Exhaustive Matching**: Always use exhaustive checks (e.g., `never` return types) when dealing with discriminated unions to ensure all cases are handled. This guarantees that if a new case is added to the union in the future, the compiler will catch any missing handlers, preventing unhandled cases at runtime.
 - **Runtime Validation**: TypeScript only exists at compile-time. For external inputs (APIs, files, user input), always use runtime validation libraries like Zod or Valibot to guarantee type safety at runtime.
 
 Always start by reading the guidelines in `references/typescript-guidelines.md`!
