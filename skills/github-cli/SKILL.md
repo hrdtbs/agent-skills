@@ -17,9 +17,9 @@ The GitHub CLI (`gh`) is your primary and ONLY interface for GitHub. The mindset
 ## 🚫 Anti-Patterns (NEVER Do These)
 
 - **NEVER use `curl` to fetch from the GitHub API.** `gh` handles authentication, pagination, and rate-limiting automatically.
-- **NEVER attempt to web scrape GitHub.** Do not use `lynx`, `curl`, or python scripts to read `github.com` URLs. Always translate the URL into the corresponding `gh` command (e.g., `gh issue view <url>`).
-- **NEVER parse human-readable `gh` output when you need structured data.** If you need to extract specific fields (like the body of a PR, or the labels), use `--json` (e.g., `gh pr view 123 --json title,body,state`).
-- **NEVER forget to handle pagination.** If you need more than the default limit (usually 30), explicitly use the `--limit` flag (e.g., `--limit 100`).
+- **NEVER attempt to web scrape GitHub.** Do not use `lynx`, `curl`, or python scripts to read `github.com` URLs. Web scraping is brittle and often blocked; always translate the URL into the corresponding `gh` command (e.g., `gh issue view <url>`) to ensure reliability.
+- **NEVER parse human-readable `gh` output when you need structured data.** Human-readable output formats may change. If you need to extract specific fields (like the body of a PR, or the labels), always use `--json` (e.g., `gh pr view 123 --json title,body,state`) for reliable parsing.
+- **NEVER forget to handle pagination.** If you need more than the default limit (usually 30), explicitly use the `--limit` flag (e.g., `--limit 100`) so you do not miss necessary data.
 - **NEVER use interactive commands.** Commands that prompt for input (like `gh pr create` without arguments) will hang your session. Always provide all required arguments upfront.
 
 ## 🌳 Decision Tree & Workflows
