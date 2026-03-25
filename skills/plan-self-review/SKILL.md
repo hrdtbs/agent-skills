@@ -5,15 +5,15 @@ description: "Self-evaluate a plan on a 100-point scale after it is created or u
 
 # Plan Self-Review
 
-Use this skill immediately after creating or updating a plan. Do not skip this step.
+Use this skill immediately after creating or updating a plan. Catching logical gaps, ambiguous steps, or missing dependencies early prevents cascading failures during execution. Self-reviewing your plan helps you approach the problem methodically and reduces the likelihood of needing major revisions later.
 
 ## Review Steps
 
 1. **Score Plan (100pt)**: Evaluate the plan based on the following criteria:
-   - **Clarity (25)**: Are the steps clear and easy to follow?
-   - **Comprehensiveness (25)**: Does the plan cover all necessary aspects of the task?
-   - **Feasibility (25)**: Are the steps achievable with the available tools and context?
-   - **Consistency (25)**: Are there any logical contradictions or missing elements?
+   - **Clarity (25)**: Are the steps clear and easy to follow? Do they specify which files and tools will be used?
+   - **Comprehensiveness (25)**: Does the plan cover all necessary aspects of the task? Are there any unaddressed edge cases?
+   - **Feasibility (25)**: Are the steps achievable with the available tools and context? Do you have enough information to execute them?
+   - **Consistency (25)**: Are there any logical contradictions or missing elements? Do the steps follow a logical sequence?
 2. **List Deficiencies**: Create a prioritized task list (`- [ ]`) of any gaps, omissions, or ambiguities found in the plan.
 3. **Improve**: Edit the plan to resolve the identified deficiencies. Update the plan using the appropriate tool.
 4. **Final Check**: Perform a final check to confirm no logical contradictions or missing elements remain.
@@ -37,3 +37,33 @@ Present your review using the following structure:
 
 ### Final Check
 - [Confirm that the plan is now logically sound and complete]
+
+## Examples
+
+**Example 1: Reviewing a plan for adding a new API endpoint**
+
+**Initial Plan:**
+1. Create new endpoint.
+2. Update tests.
+
+**Self-Review Output:**
+### Self-Evaluation Score: 40/100
+- **Clarity**: 10/25 (Missing details on which file to edit and what the endpoint does)
+- **Comprehensiveness**: 10/25 (Missing documentation update, error handling details)
+- **Feasibility**: 10/25 (Too vague to execute without further clarification)
+- **Consistency**: 10/25 (Logically sound but lacks concrete steps)
+
+### Deficiencies
+- [ ] Specify the exact file and route for the new endpoint
+- [ ] Add error handling requirements
+- [ ] Identify which test file needs to be updated and what test cases to add
+- [ ] Include a step to update the API documentation
+
+### Improvements Made
+- Updated the plan to specify the target file (`src/api/users.js`) and route (`POST /users`).
+- Added a sub-step for implementing input validation and error handling.
+- Specified the test file (`tests/api/users.test.js`) and explicitly required testing the error cases.
+- Added a step to update `docs/api.md`.
+
+### Final Check
+- The revised plan is now clear, comprehensive, and specifies exact files and actions. It is logically sound and ready for execution.
