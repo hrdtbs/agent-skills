@@ -34,12 +34,12 @@ If no template exists, provide a clear, concise summary of:
 2. Why the change was made (the problem it solves).
 3. Any testing steps or considerations for the reviewer.
 
-## Common Pitfalls
+## Anti-Patterns (NEVER Do These)
 
-- **Avoid vague PR titles** (e.g., "Update files", "Fix bug"). Reviewers need context immediately from the title.
-- **Apply the PR template**. The template is there to capture required compliance or review checklists. Skipping it makes reviewing harder for maintainers.
-- **Review the diff before pushing and creating a PR**. You might accidentally include debug statements, `.env` files, or unrelated changes.
-- **Verify the base branch**. If not `main` or `master`, confirm the target branch with the user to avoid creating a PR against the wrong branch.
+- **NEVER use vague PR titles** (e.g., "Update files", "Fix bug"). Reviewers and automated changelog generators need context immediately from the title. Always follow Conventional Commits (e.g., `fix(auth): resolve token expiration issue`).
+- **NEVER skip or delete the PR template**. The template at `.github/pull_request_template.md` exists to capture required compliance, test coverage, or review checklists. Skipping it significantly increases the cognitive load for maintainers.
+- **NEVER create a PR without reviewing the diff first** (e.g., via `git diff main...HEAD`). Doing so often accidentally includes debug statements (`console.log`, `print`), secrets (`.env` files), or completely unrelated files, slowing down the review process.
+- **NEVER assume the target branch is `main` or `master` without checking**. Always verify the base branch. Opening a PR against the wrong branch (e.g., a release branch instead of an integration branch) can cause confusing merge conflicts or accidental deployments.
 
 ## Command Reference
 
