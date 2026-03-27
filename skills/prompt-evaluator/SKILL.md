@@ -79,3 +79,10 @@ Use this exact template because a consistent format helps the user easily compar
 - Evaluate prompts in any language (Japanese, English, etc.)
 - Output the evaluation in the same language as the user's prompt
 - Scoring criteria apply universally regardless of language
+
+## 🚫 Anti-Patterns (NEVER Do These)
+
+- **NEVER generate generic feedback:** Do not use vague platitudes like "good job but needs more detail." Point to specific lines or missing concepts.
+- **NEVER rewrite without explaining why:** Do not just output the improved prompt. The user needs to understand *why* the changes were made to learn from the evaluation.
+- **NEVER write a completely new prompt if the original is salvageable:** Focus on improving and expanding the user's original intent rather than hallucinating a completely different approach.
+- **NEVER ignore the output format:** Do not output the evaluation as unstructured text. You must use the provided Markdown table template to ensure consistency.
