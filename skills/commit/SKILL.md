@@ -13,13 +13,13 @@ This skill ensures your commits are logical, atomic, and structured perfectly. A
 - **Atomic Commits:** A commit should do exactly one thing. If a commit fixes a bug AND adds a feature, it should be two commits. This makes reverting, rebasing, and reviewing significantly easier.
 - **The Audience is the Future:** Write commit messages as if you are explaining the change to someone debugging an issue at 3 AM six months from now.
 
-## 🚫 Anti-Patterns (NEVER Do These)
+## 🚫 Anti-Patterns
 
-- **NEVER describe what the code does in the body.** Do not write "I added an if statement on line 42." Write "Added a null check to prevent a crash when the user profile is missing."
-- **NEVER use emojis in commit messages.** This ensures compatibility across all terminal environments and maintains a uniform, professional, greppable git history.
-- **NEVER use vague subjects.** "Fix bug", "Update files", "WIP" are useless. They provide zero context when looking at `git log --oneline`.
-- **NEVER bundle unrelated changes.** If you noticed a typo in `README.md` while working on the `auth` system, commit the typo fix separately from the `auth` feature.
-- **NEVER commit without reviewing your own diff first.** Always run `git diff --cached` or review the staged changes to ensure no debugging statements (`console.log`, `print`) or secrets are accidentally included.
+- **Avoid describing what the code does in the body.** Do not write "I added an if statement on line 42." Write "Added a null check to prevent a crash when the user profile is missing."
+- **Avoid using emojis in commit messages.** This ensures compatibility across all terminal environments and maintains a uniform, professional, greppable git history.
+- **Avoid using vague subjects.** "Fix bug", "Update files", "WIP" are useless. They provide zero context when looking at `git log --oneline`.
+- **Avoid bundling unrelated changes.** If you noticed a typo in `README.md` while working on the `auth` system, commit the typo fix separately from the `auth` feature.
+- **Avoid committing without reviewing your own diff first.** Always run `git diff --cached` or review the staged changes to ensure no debugging statements (`console.log`, `print`) or secrets are accidentally included.
 
 ## 📝 Procedures & Workflow
 
@@ -49,13 +49,13 @@ Before creating a commit, follow these steps:
 - `revert`: Reverts a previous commit
 
 ### Subject Line Rules
-- Must be 50 characters or less.
-- Must use the imperative, present tense: "change" not "changed" nor "changes".
-- Do NOT capitalize the first letter.
-- Do NOT place a period at the end.
+- Keep the subject line to 50 characters or less to ensure it displays well in git tools.
+- Use the imperative, present tense: "change" not "changed" nor "changes".
+- Avoid capitalizing the first letter.
+- Avoid placing a period at the end.
 
 ### Body Rules (Optional but Recommended for Complex Changes)
-- Must be separated from the subject line by a single blank line.
+- Separate from the subject line by a single blank line.
 - Wrap lines at 72 characters.
 - Explain *what* and *why* vs. *how*.
 
