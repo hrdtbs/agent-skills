@@ -1,6 +1,6 @@
 ---
 name: bash-best-practices
-description: A comprehensive guide to Bash scripting best practices. Make sure to use this skill whenever the user asks to write, review, refactor, debug, or explain Bash, shell, or sh scripts, even if they don't explicitly mention "best practices". This skill helps write robust, secure, and maintainable shell scripts.
+description: A comprehensive guide to Bash scripting best practices. Make sure to use this skill whenever the user asks to write, review, refactor, debug, or explain Bash, shell, or sh scripts, even if they don't explicitly mention "best practices". This skill helps write robust, secure, and maintainable shell scripts. Keywords: bash, sh, shell scripting, cli, script review, posix.
 ---
 
 # Bash Best Practices
@@ -111,7 +111,7 @@ nested_dirs=`dirname \`dirname "${path}"\``
 
 ## Anti-Patterns to Avoid
 
-- **NEVER parse `ls` output.** `ls` output is meant for humans, not scripts. File names can contain spaces, newlines, or control characters. Use globbing or `find` instead.
+- **NEVER parse `ls` output.** `ls` output is meant for humans, not scripts. File names can contain spaces, newlines, or control characters. Using `ls` output in a `for` loop will cause the script to break on any file with a space in its name, leading to unintended operations on partial filenames. Use globbing or `find` instead.
   ```bash
   # Bad
   for file in $(ls *.txt); do ...
@@ -119,11 +119,11 @@ nested_dirs=`dirname \`dirname "${path}"\``
   # Good
   for file in *.txt; do ...
   ```
-- **NEVER use `echo` to print variables that might contain hyphens.** If the variable starts with `-e` or `-n`, `echo` will interpret it as a flag. Use `printf` instead for unpredictable input.
+- **NEVER use `echo` to print variables that might contain hyphens.** If the variable starts with `-e` or `-n`, `echo` will interpret it as a flag, swallowing the text and altering the output format unexpectedly. This is a common source of silent bugs in logging and data extraction. Use `printf` instead for unpredictable input.
   ```bash
   printf '%s\n' "${my_var}"
   ```
-- **NEVER use `cat` when input redirection works.**
+- **NEVER use `cat` when input redirection works.** Using `cat` to pipe a single file into another command (Useless Use of Cat) spawns an unnecessary process and wastes system resources. It also obscures the true source of standard input from the receiving command.
   ```bash
   # Bad (UUOC - Useless Use of Cat)
   cat file.txt | grep "error"
