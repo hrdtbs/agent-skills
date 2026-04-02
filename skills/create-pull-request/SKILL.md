@@ -41,6 +41,22 @@ If no template exists, provide a clear, concise summary of:
 - **NEVER create a PR without reviewing the diff first** (e.g., via `git diff main...HEAD`). Doing so often accidentally includes debug statements (`console.log`, `print`), secrets (`.env` files), or completely unrelated files, slowing down the review process.
 - **NEVER assume the target branch is `main` or `master` without checking**. Always verify the base branch. Opening a PR against the wrong branch (e.g., a release branch instead of an integration branch) can cause confusing merge conflicts or accidental deployments.
 
+## Examples
+
+**Example 1: Creating a pull request for a feature**
+Input: I want to create a PR for my branch "feat/login" that adds the login page.
+Output: First, check if there are uncommitted changes and push the branch if needed. Then run:
+```bash
+gh pr create --title "feat(auth): add login page" --body "## What the PR does\nAdds a new login page component to handle user authentication.\n\n## Why\nResolves issue #123 where users couldn't log in."
+```
+
+**Example 2: Creating a PR for a bug fix without a template**
+Input: Open a PR for the memory leak fix.
+Output:
+```bash
+gh pr create --title "fix(core): resolve memory leak in event listener" --body "Fixes a memory leak caused by not removing event listeners in the core module. Ensure to test by monitoring memory usage while spamming events."
+```
+
 ## Command Reference
 
 Use the `gh` CLI to create the PR:
