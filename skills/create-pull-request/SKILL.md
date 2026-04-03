@@ -9,11 +9,15 @@ This skill ensures pull requests are created correctly using the `gh` CLI, adher
 
 ## Before Creating a PR (Pre-flight Checklist)
 
-Before running `gh pr create`, please verify the state of the repository:
+Before running `gh pr create`, please verify the state of the repository. Explain to the user why these checks are important for a clean Git history and smooth review process:
 1. **Check uncommitted changes:** Are there uncommitted changes? (Run `git status`). If yes, ask the user if they want them committed or stashed.
-2. **Review your own diff:** Do the changes match the PR intent? (Run `git diff main...HEAD` or similar). Avoid creating a PR without reviewing the diff so you can catch accidental inclusions.
-3. **Check the branch:** Are you on the correct branch? Ensure you are opening a PR from a feature branch rather than directly from `main` or `master`.
-4. **Push the branch:** Ensure the branch is pushed to the remote (`git push -u origin <branch-name>`) before creating the PR.
+2. **Review your own diff:** Do the changes match the PR intent? (Run `git diff main...HEAD` or similar). Avoid creating a PR without reviewing the diff so you can catch accidental inclusions like secrets or debug statements.
+3. **Check the branch:** Are you on the correct branch? Ensure you are opening a PR from a feature branch rather than directly from `main` or `master` to prevent accidental merges of incomplete work.
+4. **Push the branch:** Ensure the branch is pushed to the remote (`git push -u origin <branch-name>`) before creating the PR, otherwise the `gh` CLI will fail.
+
+## Expected Output
+
+When a user asks to create a PR, clearly state the steps you are taking to verify the state of the repository and the branch. Once checks are complete, provide the exact `gh pr create` command that will be executed, and wait for the user to confirm before proceeding.
 
 ## Branch & Title Conventions
 
@@ -36,7 +40,7 @@ If no template exists, provide a clear, concise summary of:
 
 ## Anti-Patterns (NEVER Do These)
 
-- **NEVER use vague PR titles** (e.g., "Update files", "Fix bug"). Reviewers and automated changelog generators need context immediately from the title. Always follow Conventional Commits (e.g., `fix(auth): resolve token expiration issue`).
+- **NEVER use vague PR titles** (e.g., "Update files", "Fix bug"). Reviewers and automated changelog generators need context immediately from the title. Always follow Conventional Commits (e.g., `fix(auth): resolve token expiration issue`) so the intent is clear at a glance.
 - **NEVER skip or delete the PR template**. The template at `.github/pull_request_template.md` exists to capture required compliance, test coverage, or review checklists. Skipping it significantly increases the cognitive load for maintainers.
 - **NEVER create a PR without reviewing the diff first** (e.g., via `git diff main...HEAD`). Doing so often accidentally includes debug statements (`console.log`, `print`), secrets (`.env` files), or completely unrelated files, slowing down the review process.
 - **NEVER assume the target branch is `main` or `master` without checking**. Always verify the base branch. Opening a PR against the wrong branch (e.g., a release branch instead of an integration branch) can cause confusing merge conflicts or accidental deployments.
