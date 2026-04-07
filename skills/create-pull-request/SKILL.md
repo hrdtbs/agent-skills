@@ -38,12 +38,12 @@ If no template exists, provide a clear, concise summary of:
 2. Why the change was made (the problem it solves).
 3. Any testing steps or considerations for the reviewer.
 
-## Anti-Patterns (NEVER Do These)
+## Common Pitfalls
 
-- **NEVER use vague PR titles** (e.g., "Update files", "Fix bug"). Reviewers and automated changelog generators need context immediately from the title. Always follow Conventional Commits (e.g., `fix(auth): resolve token expiration issue`) so the intent is clear at a glance.
-- **NEVER skip or delete the PR template**. The template at `.github/pull_request_template.md` exists to capture required compliance, test coverage, or review checklists. Skipping it significantly increases the cognitive load for maintainers.
-- **NEVER create a PR without reviewing the diff first** (e.g., via `git diff main...HEAD`). Doing so often accidentally includes debug statements (`console.log`, `print`), secrets (`.env` files), or completely unrelated files, slowing down the review process.
-- **NEVER assume the target branch is `main` or `master` without checking**. Always verify the base branch. Opening a PR against the wrong branch (e.g., a release branch instead of an integration branch) can cause confusing merge conflicts or accidental deployments.
+- **Avoid vague PR titles** (e.g., "Update files", "Fix bug"). Reviewers and automated changelog generators need context immediately from the title. Follow Conventional Commits (e.g., `fix(auth): resolve token expiration issue`) so the intent is clear at a glance. This ensures maintainers quickly understand the scope of the change.
+- **Do not skip or delete the PR template**. The template at `.github/pull_request_template.md` exists to capture required compliance, test coverage, or review checklists. Fill it out completely to reduce cognitive load for maintainers and speed up the review process.
+- **Do not create a PR without reviewing the diff first** (e.g., via `git diff main...HEAD`). You must double-check the diff to avoid accidentally including debug statements (`console.log`, `print`), secrets (`.env` files), or completely unrelated files. This ensures your code is clean and safe.
+- **Do not assume the target branch is `main` or `master` without checking**. Verify the base branch before opening a PR. Opening a PR against the wrong branch (e.g., a release branch instead of an integration branch) can cause confusing merge conflicts or accidental deployments. Ensure you are targeting the correct branch.
 
 ## Examples
 
