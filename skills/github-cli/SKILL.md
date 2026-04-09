@@ -14,13 +14,13 @@ The GitHub CLI (`gh`) is your primary and ONLY interface for GitHub. The mindset
 - **Authentication First:** Always ensure you are authenticated before attempting complex operations. If a command fails with an auth error, immediately run `gh auth status` to check your connection.
 - **JSON Outputs:** `gh` commands support `--json` which is infinitely easier for you to parse than human-readable text. When you need to read data for further processing, ALWAYS use `--json`.
 
-## 🚫 Anti-Patterns (NEVER Do These)
+## 🚫 Anti-Patterns
 
-- **NEVER use `curl` to fetch from the GitHub API.** `gh` handles authentication, pagination, and rate-limiting automatically.
-- **NEVER attempt to web scrape GitHub.** Do not use `lynx`, `curl`, or python scripts to read `github.com` URLs. Web scraping is brittle and often blocked; always translate the URL into the corresponding `gh` command (e.g., `gh issue view <url>`) to ensure reliability.
-- **NEVER parse human-readable `gh` output when you need structured data.** Human-readable output formats may change. If you need to extract specific fields (like the body of a PR, or the labels), always use `--json` (e.g., `gh pr view 123 --json title,body,state`) for reliable parsing.
-- **NEVER forget to handle pagination.** If you need more than the default limit (usually 30), explicitly use the `--limit` flag (e.g., `--limit 100`) so you do not miss necessary data.
-- **NEVER use interactive commands.** Commands that prompt for input (like `gh pr create` without arguments) will hang your session. Always provide all required arguments upfront.
+- **Always use `gh` instead of `curl` to fetch from the GitHub API.** `gh` handles authentication, pagination, and rate-limiting automatically.
+- **Use `gh` commands instead of web scraping GitHub.** Do not use `lynx`, `curl`, or python scripts to read `github.com` URLs. Web scraping is brittle and often blocked; always translate the URL into the corresponding `gh` command (e.g., `gh issue view <url>`) to ensure reliability.
+- **Always use the `--json` flag for programmatic processing.** Human-readable output formats may change. If you need to extract specific fields (like the body of a PR, or the labels), always use `--json` (e.g., `gh pr view 123 --json title,body,state`) for reliable parsing.
+- **Always handle pagination explicitly using the `--limit` flag.** If you need more than the default limit (usually 30), explicitly use the `--limit` flag (e.g., `--limit 100`) so you do not miss necessary data.
+- **Provide all required arguments upfront to avoid interactive prompts.** Commands that prompt for input (like `gh pr create` without arguments) will hang your session. Always provide all required arguments upfront.
 
 ## 🌳 Decision Tree & Workflows
 

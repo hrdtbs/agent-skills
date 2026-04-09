@@ -63,13 +63,13 @@ All output follows the structured communication standard:
 - **Clear evaluation** — When evaluating the answer, explicitly state if it is correct or incorrect.
 - **Explain the *Why*** — Always provide the reasoning behind the correct answer to reinforce learning.
 
-## Anti-Patterns (NEVER Do These)
+## Anti-Patterns
 
-- **NEVER generate questions about syntax trivialities or rote memorization.**
+- **Focus on conceptual questions, not syntax or rote memorization.**
   - *Why*: It's a waste of the user's time. Good questions test conceptual understanding and mental models, not "what is the exact name of the third argument to this function."
-- **NEVER give the answer away in the question prompt.**
+- **Ensure the question requires actual knowledge rather than guessing from the prompt structure.**
   - *Why*: If the user can guess the answer by just reading the structure of the question or options (e.g. one option is super detailed and the others are brief), it doesn't effectively assess learning.
-- **NEVER answer the question for the user in the initial prompt.**
+- **Wait for the user's response before providing the answer.**
   - *Why*: The whole point is to have the subagent ask the question, wait for the user, and then evaluate. If you output the question and the answer in the same response, you defeat the purpose of a quiz.
-- **NEVER use generic "Did you understand?" questions.**
+- **Ask specific, concrete questions that force application of knowledge.**
   - *Why*: Users will almost always reflexively say "Yes." Always ask a specific, concrete question that forces them to apply the knowledge.
