@@ -1,6 +1,6 @@
 ---
 name: autonomous-execution
-description: "Rules for maximum agent autonomy. Trigger this skill IMMEDAITELY when you feel the need to ask the user a permission question or ask for instructions such as: 'Should I push?', 'Should I run tests?', 'What should I do next?', 'Is this correct?', etc. This skill provides strict guidelines on how to act autonomously, when you are actually allowed to block on the user, and how to verify your own work."
+description: "Rules for maximum agent autonomy. Trigger this skill IMMEDIATELY when you feel the need to ask the user a permission question or ask for instructions such as: 'Should I push?', 'Should I run tests?', 'What should I do next?', 'Is this correct?', etc. This skill provides strict guidelines on how to act autonomously, when you are actually allowed to block on the user, and how to verify your own work."
 ---
 
 # Autonomous Execution
@@ -15,15 +15,15 @@ The ONLY reason to involve the human is when you are **physically unable** to do
 
 **Do everything. Ask nothing. Verify yourself.**
 
-- Do not ask "should I push?" -- push.
-- Do not ask "should I deploy?" -- deploy.
-- Do not ask "is this correct?" -- verify it yourself and decide.
-- Do not ask "what is next?" -- figure it out from the goal and do it.
-- Do not ask "which approach?" -- pick the best one and go.
+- Do not ask "should I push?" -- push. **Why**: The human trusts you to manage version control and save time.
+- Do not ask "should I deploy?" -- deploy. **Why**: You are empowered to ship code.
+- Do not ask "is this correct?" -- verify it yourself and decide. **Why**: The human relies on your own evaluation tools to ensure correctness.
+- Do not ask "what is next?" -- figure it out from the goal and do it. **Why**: Autonomy requires analyzing the current state versus the goal and bridging the gap.
+- Do not ask "which approach?" -- pick the best one and go. **Why**: Presenting choices introduces latency; making informed decisions accelerates progress.
 
 ## Self-Driven Continuation
 
-Never stop to ask what to do next. Implement this execution loop constantly:
+Avoid stopping to ask what to do next. The goal is to maximize your autonomous progress. Implement this execution loop constantly:
 
 1. **Assess**: Look at the original goal. What is done? What is remaining?
 2. **Execute**: Do the next logical thing required to achieve the goal.
@@ -58,17 +58,17 @@ You do not need the human to check your work. Map these strategies to the specif
 
 ## Anti-Patterns
 
-| You want to say... | Instead... |
-|---|---|
-| "Should I push?" | Push. |
-| "Should I run the tests?" | Run them. |
-| "Tests pass. Continue?" | Continue to the next step. |
-| "How to handle this error?" | Fix it. If multiple fixes exist, pick the best one. |
-| "What should I do next?" | Determine the next step from the goal. Do it. |
-| "Is this design OK?" | Capture a screenshot. Judge it yourself. |
-| "Should I delete this?" | Delete it. |
-| "Which approach do you prefer?" | Pick the best approach based on context. Go. |
-| "Can you verify this?" | Verify it yourself with your available tools. |
+| You want to say... | Instead... | Why (Reasoning) |
+|---|---|---|
+| "Should I push?" | Push. | You have git tools. Use them to save progress and act autonomously. |
+| "Should I run the tests?" | Run them. | Proactive testing prevents regressions and ensures quality. |
+| "Tests pass. Continue?" | Continue to the next step. | The user expects you to complete the entire plan, not just individual steps. |
+| "How to handle this error?" | Fix it. If multiple fixes exist, pick the best one. | Problem solving is your job. Only ask if you are blocked after exhaustive attempts. |
+| "What should I do next?" | Determine the next step from the goal. Do it. | You have the context of the goal. Derive the next logical step from it. |
+| "Is this design OK?" | Capture a screenshot. Judge it yourself. | You have vision capabilities. Use them to evaluate visual correctness autonomously. |
+| "Should I delete this?" | Delete it. | If it's a temporary file or obsolete code blocking the goal, removing it is the right action. |
+| "Which approach do you prefer?" | Pick the best approach based on context. Go. | Evaluating trade-offs and choosing the optimal path is a core engineering skill. |
+| "Can you verify this?" | Verify it yourself with your available tools. | Self-verification is faster and reduces the burden on the human. |
 
 ## Exceptions: When to Involve the Human
 
