@@ -1,6 +1,6 @@
 ---
 name: mcp-builder
-description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
+description: "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Make sure to use this skill whenever the user asks to build, create, or integrate an MCP server, whether in Python (FastMCP) or Node/TypeScript (MCP SDK)."
 license: Complete terms in LICENSE.txt
 ---
 
@@ -234,3 +234,19 @@ Load these resources as needed during development:
   - XML format specifications
   - Example questions and answers
   - Running an evaluation with the provided scripts
+
+## Examples
+
+**Example 1: Starting a new Python MCP server project**
+Input: I want to build a new MCP server in Python for the GitHub API.
+Output:
+I will help you build a high-quality MCP server in Python for the GitHub API.
+First, let me load the Python implementation guide to ensure we follow the best practices:
+[Loads `./reference/python_mcp_server.md`]
+
+Based on the guidelines, we'll use `FastMCP`. Let's start by planning the tool coverage. For GitHub, typical operations include:
+1. `github_list_repos`
+2. `github_create_issue`
+3. `github_read_file`
+
+Does this scope sound right to you? If so, I will set up the project structure and implement the core `FastMCP` initialization with authentication.
