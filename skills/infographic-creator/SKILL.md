@@ -1,6 +1,6 @@
 ---
 name: infographic-creator
-description: Create beautiful infographics based on provided text content. Use this when a user requests to create an infographic.
+description: "Create beautiful infographics based on provided text content. Make sure to use this skill whenever a user requests to create an infographic, chart, diagram, data visualization, or wants to transform data and information into a visual structure, even if they don't explicitly use the word 'infographic'."
 ---
 
 An infographic transforms data, information, and knowledge into perceptible visual language. It combines visual design and data visualization, using intuitive symbols to compress complex information and help the audience quickly understand and remember the key points.
@@ -10,6 +10,15 @@ An infographic transforms data, information, and knowledge into perceptible visu
 This task uses [AntV Infographic](https://infographic.antv.vision/) to create visual infographics.
 
 Before starting the task, you need to understand the AntV Infographic syntax specifications, including the template list, data structures, themes, etc.
+
+## Anti-Patterns
+
+- **Do not output JSON, explanatory text, or additional Markdown paragraphs.**
+  - *Why*: The output must be directly executable by the AntV Infographic renderer. Any extra text breaks the parsing and execution flow. Only output a single `plain` code block containing the infographic syntax.
+- **Do not use quotes or commas in the `palette` array.**
+  - *Why*: The DSL expects raw color values separated by spaces. Quotes or commas will cause a rendering error. Use `palette #4f46e5 #06b6d4 #10b981`.
+- **Do not mix different main data fields in `data`.**
+  - *Why*: A template only supports its specific data structure. Mixing `lists`, `sequences`, `compares`, `values`, `root`, or `nodes` will cause the renderer to fail or ignore data. Stick to the single main data field matching the chosen template.
 
 ## Specifications
 
@@ -452,5 +461,5 @@ Reference HTML template:
 
 **Note:** The HTML file must contain:
 
-- SVG export implemented via an export button
-- Responsive container with both width and height set to 100%
+- **SVG export functionality via `toDataURL`**: This is essential because users often need to embed the resulting infographic in presentations or documents. Providing the export functionality allows them to easily download the final result as a scalable vector graphic.
+- **Responsive container with both width and height set to 100%**: This ensures the visualization adapts correctly to whatever browser window size the user opens it in.
